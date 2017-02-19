@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Product, Review, ProductService } from '../../services/product-service.service';
 
 @Component({
   selector: 'product-detail',
@@ -7,9 +8,14 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent {
-  productTitle: string;
+  product: Product;
+  reviews: Review[];
 
-  constructor(route: ActivatedRoute) {
-    this.productTitle = route.snapshot.params['prodTitle'];
+  constructor(route: ActivatedRoute, productService: ProductService) {
+
+    let prodId: number = parseInt(route.snapshot.params['productId']);
+    this.product = productService.getProductById(prodId);
+
+    this.reviews = productService.getReviewsForProduct(this.product.id);
   }
 }

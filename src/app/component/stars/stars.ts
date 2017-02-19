@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'auction-stars',
   templateUrl: './stars.html',
-  styles: [` .starrating { color: #d17581; }`]
+  styles: [`.starrating { color: #d17581; }`]
 })
 
 export class StarsComponent implements OnInit {
