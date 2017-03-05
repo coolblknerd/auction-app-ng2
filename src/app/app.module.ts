@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './component/application/app.component';
 import { SearchComponent } from './component/search/search';
@@ -16,6 +17,9 @@ import { ProductService } from './services/product-service.service';
 
 import { routing } from './app.routes';
 
+import { FilterPipe } from './pipes/filter.pipe';
+
+
 
 @NgModule({
   declarations: [
@@ -27,11 +31,13 @@ import { routing } from './app.routes';
     FooterComponent,
     CarouselComponent,
     HomeComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
-    routing
+    routing,
+    ReactiveFormsModule
   ],
   providers: [
     ProductService,

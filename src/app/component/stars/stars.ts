@@ -1,14 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'auction-stars',
   templateUrl: './stars.html',
-  styles: [`.starrating { color: #d17581; }`]
+  styles: [`.starrating { color: #d17581; }`],
+  inputs: ['rating', 'count']
 })
 
 export class StarsComponent implements OnInit {
-  @Input() count: number = 5;
-  @Input() rating: number = 0;
+  count: number = 5;
+  rating: number = 0;
   stars: boolean[] = [];
 
   ngOnInit() {
