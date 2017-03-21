@@ -1,21 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'auction-stars',
   templateUrl: './stars.html',
   styles: [`.starrating { color: #d17581; }`],
-  inputs: ['rating', 'count']
 })
 
-export class StarsComponent implements OnInit {
-  count: number = 5;
-  rating: number = 0;
-  stars: boolean[] = [];
+export class StarsComponent {
+  private _rating: number;
+  private stars: boolean[];
 
-  ngOnInit() {
-    for (let i = 1; i <= this.count; i++) {
-      this.stars.push(i > this.rating);
+  private maxStars: number = 5;
+
+  @Input() readonly: boolean = true;
+  @Input() get rating(): number {
+    return this._rating;
+  }
+
+  set rating(value: number){
+    this._rating = value || 0;
+    this.stars = Array(this.maxStars).fill(true, 0, this.rating);
+  }
+
+  @Output() ratingChange: EventEmitter<number> = new EventEmitter();
+
+  fillStarsWithColor(index){
+    if (!this.readonly) {
+      this.rating = index + 1;
+      this.ratingChange.emit(this.rating);
     }
-
   }
 }
