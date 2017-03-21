@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './component/application/app.component';
 import { SearchComponent } from './component/search/search';
@@ -19,8 +19,6 @@ import { routing } from './app.routes';
 
 import { FilterPipe } from './pipes/filter.pipe';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +35,8 @@ import { FilterPipe } from './pipes/filter.pipe';
   imports: [
     BrowserModule,
     routing,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     ProductService,
